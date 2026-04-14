@@ -11,6 +11,15 @@ export default function About() {
 
   return (
     <>
+      {/* Section Header */}
+      <section className="max-w-7xl mx-auto px-6 pt-32 pb-8">
+        <span className="section-label">About Me</span>
+        <h2 className="section-title">My Journey</h2>
+        <p className="section-desc max-w-2xl" style={{ color: theme.colors.secondary }}>
+          From passion to profession - my path through technology and continuous growth
+        </p>
+      </section>
+
       {/* Story Section */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -28,7 +37,6 @@ export default function About() {
 
           <div>
             <div className="space-y-6 animate-fadeup" style={{ animationDelay: '0.2s' }}>
-              <h2 className="text-4xl font-bold">My Journey</h2>
               <p className="text-lg leading-relaxed" style={{ color: theme.colors.secondary }}>
                 I'm a Computer Science graduate from Iqra University with a CGPA of 3.55. My passion lies in building scalable web applications, AR/VR experiences, and AI-powered solutions that solve real-world problems.
               </p>
@@ -60,7 +68,7 @@ export default function About() {
       {/* Values Section */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">What I Value</h2>
+          <h2 className="section-title mb-4">What I Value</h2>
           <p className="text-lg" style={{ color: theme.colors.secondary }}>
             Principles that guide my work and development philosophy
           </p>
@@ -68,18 +76,28 @@ export default function About() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { title: 'Clean Code', desc: 'Writing maintainable, readable code that stands the test of time' },
-            { title: 'User Focus', desc: 'Building solutions that solve real problems and delight users' },
-            { title: 'Continuous Learning', desc: 'Always exploring new technologies and best practices' },
+            { title: 'Clean Code', desc: 'Writing maintainable, readable code that stands the test of time', icon: '✨' },
+            { title: 'User Focus', desc: 'Building solutions that solve real problems and delight users', icon: '🎯' },
+            { title: 'Continuous Learning', desc: 'Always exploring new technologies and best practices', icon: '🚀' },
           ].map((value, idx) => (
             <div key={idx}
-              className="p-8 rounded-2xl border-2 animate-scale-in hover:shadow-lg transition-all duration-300"
+              className="p-8 rounded-2xl border-2 animate-scale-in hover:shadow-lg transition-all duration-500 group cursor-pointer"
               style={{
                 borderColor: theme.colors.border,
                 backgroundColor: theme.colors.surface,
                 animationDelay: `${0.1 * idx}s`,
+                transform: 'translateY(0)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.boxShadow = `0 20px 40px rgba(123,92,170,0.15)`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
               }}>
-              <h3 className="text-xl font-bold mb-4">{value.title}</h3>
+              <div className="text-4xl mb-4">{value.icon}</div>
+              <h3 className="text-xl font-bold mb-4" style={{ color: theme.colors.primary }}>{value.title}</h3>
               <p style={{ color: theme.colors.secondary }}>{value.desc}</p>
             </div>
           ))}

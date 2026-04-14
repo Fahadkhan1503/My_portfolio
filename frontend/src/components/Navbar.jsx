@@ -25,27 +25,62 @@ export default function Navbar({ showLoginButton = true, user = null, onLogout =
       }
     : { backgroundColor: 'transparent' };
 
-  const underlineStyle = `
+  const navbarStyles = `
+    .navbar-brand {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .navbar-brand:hover {
+      opacity: 0.8;
+    }
+    .nav-link {
+      position: relative;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      padding: 8px 0;
+      display: inline-block;
+    }
     .nav-link::after {
-      background-color: ${theme.colors.primary} !important;
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: ${theme.colors.primary};
+      transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .nav-link:hover {
+      color: ${theme.colors.primary};
     }
   `;
 
   return (
     <>
-      <style>{underlineStyle}</style>
+      <style>{navbarStyles}</style>
       <nav 
-        style={navStyle}
-        className="sticky top-0 z-50 transition-all duration-300"
+        style={{
+          ...navStyle,
+          transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          borderBottom: isScrolled ? `1px solid ${theme.colors.border}` : 'none',
+        }}
+        className="sticky top-0 z-50"
       >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           
           {/* Logo */}
           <div className="shrink-0 flex items-center">
-            <a href="/" className="text-lg font-bold transition hover:opacity-80" style={{ color: theme.colors.primary }}>
-              <span className="font-bold" style={{ color: theme.colors.primary }}>Muhammad</span>
-              <span className="font-bold" style={{ color: theme.colors.text }}> Fahad</span>
+            <a href="/" className="navbar-brand" style={{ color: theme.colors.primary }}>
+              <span style={{ color: theme.colors.primary }}>Muhammad</span>
+              <span style={{ color: theme.colors.text }}>Fahad</span>
             </a>
           </div>
 

@@ -63,6 +63,15 @@ export default function Projects() {
 
   return (
     <>
+      {/* Section Header */}
+      <section className="max-w-7xl mx-auto px-6 pt-32 pb-8">
+        <span className="section-label">Featured Work</span>
+        <h2 className="section-title">Projects</h2>
+        <p className="section-desc max-w-2xl" style={{ color: theme.colors.secondary }}>
+          A selection of things I've built - each representing my commitment to quality and innovation
+        </p>
+      </section>
+
       {/* Stats */}
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -81,11 +90,6 @@ export default function Projects() {
 
       {/* Projects Grid */}
       <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="mb-12">
-          <h2 className="text-4xl font-bold mb-3">Featured Projects</h2>
-          <p style={{ color: theme.colors.secondary }}>Each project represents my commitment to quality and innovation</p>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
             <div key={project.id} className="animate-scale-in" style={{ animationDelay: `${0.08 * idx}s` }}>
@@ -104,18 +108,41 @@ export default function Projects() {
 
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="p-12 rounded-2xl text-center border-2"
+        <div className="p-12 rounded-2xl text-center border-2 transition-all duration-500 cursor-pointer"
           style={{
             backgroundColor: theme.colors.surface,
             borderColor: theme.colors.border,
+            transform: 'translateY(0)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-4px)';
+            e.currentTarget.style.boxShadow = `0 20px 40px rgba(123,92,170,0.15)`;
+            e.currentTarget.style.borderColor = '#7b5caa';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = 'none';
+            e.currentTarget.style.borderColor = theme.colors.border;
           }}>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Want to see more?</h2>
           <p style={{ color: theme.colors.secondary }} className="text-lg mb-8 max-w-2xl mx-auto">
             Check out my GitHub repository for more projects and contributions to the open-source community.
           </p>
           <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-            className="inline-block px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-            style={{ backgroundColor: theme.colors.primary, color: 'white' }}>
+            className="inline-block px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg"
+            style={{ 
+              backgroundColor: theme.colors.primary, 
+              color: 'white',
+              boxShadow: '0 4px 12px rgba(123,92,170,0.15)',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-3px)';
+              e.target.style.boxShadow = '0 8px 24px rgba(123,92,170,0.25)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 4px 12px rgba(123,92,170,0.15)';
+            }}>
             Visit GitHub →
           </a>
         </div>

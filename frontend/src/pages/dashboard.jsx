@@ -29,6 +29,39 @@ export default function Dashboard() {
   return (
     <div style={{ backgroundColor: theme.colors.background, color: theme.colors.text }} className="min-h-screen">
       <style>{`
+        html { scroll-behavior: smooth; }
+        
+        .section-label {
+          display: inline-block;
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          color: #7b5caa;
+          text-transform: uppercase;
+          margin-bottom: 12px;
+          padding: 8px 16px;
+          background: rgba(123,92,170,0.08);
+          border-radius: 20px;
+          animation: fadeUp 0.5s ease both;
+        }
+        
+        .section-title {
+          font-size: clamp(28px, 5vw, 48px);
+          font-weight: 800;
+          line-height: 1.2;
+          letter-spacing: -0.01em;
+          animation: fadeUp 0.5s ease both;
+          animation-delay: 0.1s;
+        }
+        
+        .section-desc {
+          font-size: 18px;
+          line-height: 1.6;
+          margin-bottom: 40px;
+          animation: fadeUp 0.5s ease both;
+          animation-delay: 0.2s;
+        }
+        
         .hero-tag    { animation: fadeUp 0.5s ease both; animation-delay: 0.1s; }
         .hero-title  { animation: fadeUp 0.5s ease both; animation-delay: 0.25s; }
         .hero-sub    { animation: fadeUp 0.5s ease both; animation-delay: 0.4s; }
@@ -43,24 +76,35 @@ export default function Dashboard() {
           font-weight: 600;
           font-size: 15px;
           text-decoration: none;
-          transition: background 0.2s, transform 0.15s;
+          transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
           display: inline-block;
+          box-shadow: 0 4px 12px rgba(123,92,170,0.15);
+          border: 2px solid #7b5caa;
         }
-        .btn-primary:hover { background: #5b3c8a; transform: translateY(-1px); }
+        .btn-primary:hover { 
+          background: #5b3c8a; 
+          transform: translateY(-3px);
+          box-shadow: 0 8px 24px rgba(123,92,170,0.25);
+        }
 
         .btn-outline {
-          border: 1.5px solid #7b5caa;
+          border: 2px solid #7b5caa;
           color: #7b5caa;
           padding: 11px 28px;
           border-radius: 10px;
           font-weight: 600;
           font-size: 15px;
           text-decoration: none;
-          transition: background 0.2s, transform 0.15s;
+          transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
           display: inline-block;
           background: transparent;
         }
-        .btn-outline:hover { background: rgba(123,92,170,0.08); transform: translateY(-1px); }
+        .btn-outline:hover { 
+          background: #7b5caa;
+          color: #fff;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 24px rgba(123,92,170,0.25);
+        }
 
         .social-link {
           width: 40px;

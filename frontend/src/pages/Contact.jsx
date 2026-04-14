@@ -51,6 +51,15 @@ export default function Contact() {
 
   return (
     <>
+      {/* Section Header */}
+      <section className="max-w-7xl mx-auto px-6 pt-32 pb-8">
+        <span className="section-label">Get In Touch</span>
+        <h2 className="section-title">Let's Connect</h2>
+        <p className="section-desc max-w-2xl" style={{ color: theme.colors.secondary }}>
+          Whether you have a project idea, job opportunity, or just want to chat about tech
+        </p>
+      </section>
+
       {/* Contact Methods */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -60,11 +69,22 @@ export default function Contact() {
               href={method.link}
               target={method.link.startsWith('http') ? '_blank' : undefined}
               rel={method.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="p-6 rounded-2xl border-2 text-center text-decoration-none animate-scale-in hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+              className="p-6 rounded-2xl border-2 text-center text-decoration-none animate-scale-in transition-all duration-500 cursor-pointer"
               style={{
                 borderColor: theme.colors.border,
                 backgroundColor: theme.colors.surface,
                 animationDelay: `${0.1 * idx}s`,
+                transform: 'translateY(0)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.boxShadow = `0 20px 40px rgba(123,92,170,0.15)`;
+                e.currentTarget.style.borderColor = '#7b5caa';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = theme.colors.border;
               }}
             >
               <div className="text-4xl mb-4">{method.icon}</div>
@@ -79,14 +99,23 @@ export default function Contact() {
 
       {/* Contact Form */}
       <section className="max-w-2xl mx-auto px-6 py-24">
-        <div className="p-12 rounded-2xl border-2"
+        <div className="p-12 rounded-2xl border-2 transition-all duration-500"
           style={{
             borderColor: theme.colors.border,
             backgroundColor: theme.colors.surface,
+            transform: 'translateY(0)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-4px)';
+            e.currentTarget.style.boxShadow = `0 20px 40px rgba(123,92,170,0.15)`;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = 'none';
           }}>
           <h2 className="text-3xl font-bold mb-2">Send me a message</h2>
           <p style={{ color: theme.colors.secondary }} className="mb-8">
-            I'll get back to you as soon as possible
+            I'll get back to you as soon as possible. Typically within 24-48 hours.
           </p>
 
           {submitted ? (
@@ -177,8 +206,19 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                style={{ backgroundColor: theme.colors.primary }}
+                className="w-full py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-lg"
+                style={{ 
+                  backgroundColor: theme.colors.primary,
+                  boxShadow: '0 4px 12px rgba(123,92,170,0.15)',
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 8px 24px rgba(123,92,170,0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 12px rgba(123,92,170,0.15)';
+                }}
               >
                 Send Message
               </button>
@@ -187,14 +227,25 @@ export default function Contact() {
         </div>
 
         {/* Additional Info */}
-        <div className="mt-12 p-8 rounded-2xl border-2"
+        <div className="mt-12 p-8 rounded-2xl border-2 transition-all duration-500"
           style={{
             borderColor: theme.colors.border,
             backgroundColor: theme.colors.surface,
+            transform: 'translateY(0)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-4px)';
+            e.currentTarget.style.boxShadow = `0 20px 40px rgba(123,92,170,0.15)`;
+            e.currentTarget.style.borderColor = '#7b5caa';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = 'none';
+            e.currentTarget.style.borderColor = theme.colors.border;
           }}>
-          <h3 className="font-bold text-lg mb-4">Response time</h3>
+          <h3 className="font-bold text-lg mb-4">💬 Quick Response</h3>
           <p style={{ color: theme.colors.secondary }}>
-            I typically respond to emails within 24-48 hours. For urgent matters, feel free to reach out on LinkedIn.
+            I prioritize communication. For urgent matters, reach out on LinkedIn or Discord for faster response.
           </p>
         </div>
       </section>

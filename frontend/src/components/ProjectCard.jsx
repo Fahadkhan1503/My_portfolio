@@ -15,7 +15,27 @@ export default function ProjectCard({
   const { theme, isDarkMode } = useTheme();
 
   return (
-    <div style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.border }} className="border rounded-lg p-6 hover:border-opacity-50 transition">
+    <div 
+      style={{ 
+        backgroundColor: theme.colors.surface, 
+        borderColor: theme.colors.border,
+        border: `2px solid ${theme.colors.border}`,
+        transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        transform: 'translateY(0)',
+        borderRadius: '16px',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+      }} 
+      className="p-6 hover:border-opacity-100 cursor-pointer"
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-8px)';
+        e.currentTarget.style.boxShadow = `0 20px 40px rgba(123,92,170,0.15)`;
+        e.currentTarget.style.borderColor = '#7b5caa';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+        e.currentTarget.style.borderColor = theme.colors.border;
+      }}   >
       {/* Project Image */}
       <div 
         style={{ backgroundColor: isDarkMode ? '#2a2a2d' : '#f0ede9' }} 
@@ -44,8 +64,21 @@ export default function ProjectCard({
           {tags.map((tag, index) => (
             <span 
               key={index}
-              style={{ backgroundColor: `${theme.colors.primary}33`, color: theme.colors.primary }} 
-              className="px-3 py-1 rounded-full text-sm"
+              style={{ 
+                backgroundColor: `${theme.colors.primary}20`, 
+                color: theme.colors.primary,
+                border: `1px solid ${theme.colors.primary}40`,
+                transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+              }} 
+              className="px-3 py-1 rounded-full text-sm font-medium"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = `${theme.colors.primary}30`;
+                e.currentTarget.style.borderColor = theme.colors.primary;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = `${theme.colors.primary}20`;
+                e.currentTarget.style.borderColor = `${theme.colors.primary}40`;
+              }}
             >
               {tag}
             </span>

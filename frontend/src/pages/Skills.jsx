@@ -36,21 +36,51 @@ export default function Skills() {
     { level: 'Familiar', percent: 60 },
   ];
 
+  const categoryIcons = {
+    'Frontend': '🎨',
+    'Backend': '⚙️',
+    'AR/VR & Game Dev': '🎮',
+    'AI/ML': '🤖',
+    'Tools & DevOps': '🛠️',
+    'Soft Skills': '💡',
+  };
+
   return (
     <>
+      {/* Section Header */}
+      <section className="max-w-7xl mx-auto px-6 pt-32 pb-8">
+        <span className="section-label">Expertise</span>
+        <h2 className="section-title">My Skills</h2>
+        <p className="section-desc max-w-2xl" style={{ color: theme.colors.secondary }}>
+          A comprehensive toolkit developed through education and hands-on project experience
+        </p>
+      </section>
+
       {/* Skills Grid */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, idx) => (
             <div
               key={idx}
-              className="p-8 rounded-2xl border-2 animate-scale-in hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="p-8 rounded-2xl border-2 animate-scale-in transition-all duration-500 group cursor-pointer"
               style={{
                 borderColor: theme.colors.border,
                 backgroundColor: theme.colors.surface,
                 animationDelay: `${0.1 * idx}s`,
+                transform: 'translateY(0)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.boxShadow = `0 20px 40px rgba(123,92,170,0.15)`;
+                e.currentTarget.style.borderColor = '#7b5caa';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = theme.colors.border;
               }}
             >
+              <div className="text-3xl mb-3">{categoryIcons[category.category]}</div>
               <h3 className="text-2xl font-bold mb-6" style={{ color: theme.colors.primary }}>
                 {category.category}
               </h3>
