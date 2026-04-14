@@ -31,7 +31,7 @@ export const getProjectById = async (req, res) => {
 
 export const createProject = async (req, res) => {
   try {
-    const { title, description, image, link } = req.body;
+    const { title, description, image, link, tags, githubUrl } = req.body;
     const userId = req.user.id; // From auth middleware
 
     // Validation
@@ -44,6 +44,8 @@ export const createProject = async (req, res) => {
       description,
       image,
       link,
+      tags: tags || [],
+      githubUrl: githubUrl || '',
       createdBy: userId
     });
 
@@ -62,7 +64,7 @@ export const createProject = async (req, res) => {
 export const updateProject = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, image, link } = req.body;
+    const { title, description, image, link, tags, githubUrl } = req.body;
     const userId = req.user.id;
 
     const project = await Project.findById(id);
@@ -80,6 +82,8 @@ export const updateProject = async (req, res) => {
     if (description) project.description = description;
     if (image) project.image = image;
     if (link) project.link = link;
+    if (tags) project.tags = tags;
+    if (githubUrl) project.githubUrl = githubUrl;
     project.updatedAt = Date.now();
 
     await project.save();

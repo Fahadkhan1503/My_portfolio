@@ -38,4 +38,5 @@ export default mongoose.model('User', userSchema);
 //   "email": "adminisfahad@gmail.com",
 //   "password": "fahadadmin1234*",
 //   "role": "admin"
+// fahadadmin1234*
 // }

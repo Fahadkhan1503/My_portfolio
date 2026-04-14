@@ -18,6 +18,16 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  githubUrl: {
+    type: String,
+    required: false,
+    trim: true
+  },
+  tags: {
+    type: [String],
+    default: [],
+    required: false
+  },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

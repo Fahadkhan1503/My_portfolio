@@ -1,14 +1,19 @@
-import { useState } from 'react'
-
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import Dashboard from './pages/dashboard';
+import AdminPanel from './pages/Admin/admin_panel';
 
 function App() {
-
   return (
-    <div>
-      <h1 className='text-yellow-300 text-3xl'>portfolio</h1>
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/" element={<Navigate to="/dashboard" />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
