@@ -91,7 +91,7 @@ export default function Skills() {
               {/* Card header */}
               <div className="flex items-center gap-3 mb-6">
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center text-lg flex-shrink-0"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0"
                   style={{
                     background: isDarkMode ? 'rgba(123,92,170,0.15)' : 'rgba(123,92,170,0.08)',
                     border: `1px solid ${isDarkMode ? 'rgba(123,92,170,0.25)' : 'rgba(123,92,170,0.15)'}`,

@@ -98,7 +98,7 @@ export default function Projects() {
               }}
             >
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0"
                 style={{
                   background: isDarkMode ? 'rgba(123,92,170,0.15)' : 'rgba(123,92,170,0.08)',
                   border: `1px solid ${isDarkMode ? 'rgba(123,92,170,0.25)' : 'rgba(123,92,170,0.15)'}`,

@@ -124,7 +124,7 @@ export default function About() {
       />
 
       {/* ── Values Section ── */}
-      <div ref={valuesRef} className="max-w-7xl mx-auto px-6 py-32">
+      {/* <div ref={valuesRef} className="max-w-7xl mx-auto px-6 py-32">
         <div
           className={`text-center mb-16 transition-all duration-700 ${valuesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
@@ -148,12 +148,12 @@ export default function About() {
                 background: isDarkMode
                   ? 'rgba(255,255,255,0.03)'
                   : 'rgba(255,255,255,0.8)',
-                border: `1.5px solid ${isDarkMode ? 'rgba(123,92,170,0.18)' : 'rgba(123,92,170,0.12)'}`,
+                border: `3px solid ${isDarkMode ? 'rgba(123,92,170,0.18)' : 'rgba(123,92,170,0.12)'}`,
                 backdropFilter: 'blur(8px)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.borderColor = 'rgba(123,92,170,0.45)';
+                e.currentTarget.style.borderColor = theme.colors.primary;
                 e.currentTarget.style.boxShadow = '0 16px 48px rgba(123,92,170,0.12)';
               }}
               onMouseLeave={(e) => {
@@ -180,138 +180,7 @@ export default function About() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
-
-// import { useTheme } from '../context/ThemeContext';
-// import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-
-// export default function About() {
-//   const { theme, isDarkMode } = useTheme();
-//   const { ref: contentRef, isVisible } = useIntersectionObserver();
-
-//   const achievements = [
-//     { label: 'CGPA', value: '3.55' },
-//     { label: 'Internships', value: '1' },
-//     { label: 'Projects', value: '10+' },
-//   ];
-
-//   const sectionBg = isDarkMode
-//     ? {
-//         background: '#0f0c19',
-//         backgroundImage: `
-//           radial-gradient(ellipse 120% 60% at 80% 20%, rgba(123,92,170,0.25) 0%, transparent 50%),
-//           radial-gradient(ellipse 100% 80% at 20% 100%, rgba(187,156,222,0.15) 0%, transparent 60%)
-//         `,
-//       }
-//     : {
-//         background: '#faf8ff',
-//         backgroundImage: `
-//           radial-gradient(ellipse 120% 60% at 80% 20%, rgba(123,92,170,0.12) 0%, transparent 50%),
-//           radial-gradient(ellipse 100% 80% at 20% 100%, rgba(187,156,222,0.10) 0%, transparent 60%)
-//         `,
-//       };
-
-//   return (
-//     <>
-//       {/* Section Header */}
-//       <section className="max-w-7xl mx-auto px-6 pt-32 pb-8">
-//         <span className="section-label">About Me</span>
-//         <h2 className="section-title">My Journey</h2>
-//         <p className="section-desc max-w-2xl" style={{ color: theme.colors.secondary }}>
-//           From passion to profession - my path through technology and continuous growth
-//         </p>
-//       </section>
-
-//       {/* Story Section with Background */}
-//       <section style={sectionBg} className="w-full relative py-24 overflow-x-hidden">
-//         <div ref={contentRef} className="max-w-7xl mx-auto px-6">
-//           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-//             <div className={`${isVisible ? 'animate-in-left' : 'opacity-0'}`}>
-//               <div className="w-full aspect-square rounded-2xl overflow-hidden"
-//                 style={{ backgroundColor: theme.colors.surface, border: `2px solid ${theme.colors.border}` }}>
-//                 <div className="w-full h-full bg-linear-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center">
-//                   <div className="text-center">
-//                     <div className="text-6xl font-bold mb-2" style={{ color: theme.colors.primary }}>👨‍💻</div>
-//                     <p style={{ color: theme.colors.secondary }}>Photo placeholder</p>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-
-//             <div className={`${isVisible ? 'animate-in-right' : 'opacity-0'}`}>
-//               <div className="space-y-6">
-//                 <p className="text-lg leading-relaxed" style={{ color: theme.colors.secondary }}>
-//                   I'm a Computer Science graduate from Iqra University with a CGPA of 3.55. My passion lies in building scalable web applications, AR/VR experiences, and AI-powered solutions that solve real-world problems.
-//                 </p>
-//                 <p className="text-lg leading-relaxed" style={{ color: theme.colors.secondary }}>
-//                   During my studies, I interned at 10Pearls, where I worked on full-stack development projects. This experience shaped my approach to clean code and user-centric design.
-//                 </p>
-//                 <p className="text-lg leading-relaxed" style={{ color: theme.colors.secondary }}>
-//                   I'm currently seeking entry-level roles in software development, where I can contribute my technical skills and learn from experienced professionals.
-//                 </p>
-
-//                 <div className="grid grid-cols-3 gap-8 pt-8 border-t" style={{ borderColor: theme.colors.border }}>
-//                   {achievements.map((item, idx) => (
-//                     <div key={idx} className={`text-center ${isVisible ? 'animate-in-bottom' : 'opacity-0'}`}
-//                       style={{ animationDelay: `${0.1 * (idx + 1)}s` }}>
-//                       <div className="text-3xl font-bold mb-2" style={{ color: theme.colors.primary }}>
-//                         {item.value}
-//                       </div>
-//                       <p className="text-sm uppercase tracking-wider" style={{ color: theme.colors.secondary }}>
-//                         {item.label}
-//                       </p>
-//                     </div>
-//                   ))}
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Values Section */}
-//       <section style={sectionBg} className="w-full relative py-24 overflow-x-hidden">
-//         <div className="max-w-7xl mx-auto px-6">
-//           <div className="text-center mb-16">
-//             <h2 className="section-title mb-4">What I Value</h2>
-//             <p className="text-lg" style={{ color: theme.colors.secondary }}>
-//               Principles that guide my work and development philosophy
-//             </p>
-//           </div>
-
-//           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-//             {[
-//               { title: 'Clean Code', desc: 'Writing maintainable, readable code that stands the test of time', icon: '✨' },
-//               { title: 'User Focus', desc: 'Building solutions that solve real problems and delight users', icon: '🎯' },
-//               { title: 'Continuous Learning', desc: 'Always exploring new technologies and best practices', icon: '🚀' },
-//             ].map((value, idx) => (
-//               <div key={idx}
-//                 className={`p-8 rounded-2xl border-2 hover:shadow-lg transition-all duration-500 group cursor-pointer ${isVisible ? 'animate-in-bottom' : 'opacity-0'}`}
-//                 style={{
-//                   borderColor: theme.colors.border,
-//                   backgroundColor: theme.colors.surface,
-//                   animationDelay: `${0.1 * (idx + 1)}s`,
-//                   transform: 'translateY(0)',
-//                 }}
-//                 onMouseEnter={(e) => {
-//                   e.currentTarget.style.transform = 'translateY(-8px)';
-//                   e.currentTarget.style.boxShadow = `0 20px 40px rgba(123,92,170,0.15)`;
-//                 }}
-//                 onMouseLeave={(e) => {
-//                   e.currentTarget.style.transform = 'translateY(0)';
-//                   e.currentTarget.style.boxShadow = 'none';
-//                 }}>
-//                 <div className="text-4xl mb-4">{value.icon}</div>
-//                 <h3 className="text-xl font-bold mb-4" style={{ color: theme.colors.primary }}>{value.title}</h3>
-//                 <p style={{ color: theme.colors.secondary }}>{value.desc}</p>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-//     </>
-//   );
-// }

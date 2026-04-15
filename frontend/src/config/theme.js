@@ -15,7 +15,7 @@ export const colors = {
     light: '#faf7f5', // Light mode text (same as base light for contrast)
     dark: '#2a2a2d',  // Dark mode text
   },
-  border: '#262629',
+  border: '#252629',
   surface: {
     light: '#ffffff',
     dark: '#1f1f22',
