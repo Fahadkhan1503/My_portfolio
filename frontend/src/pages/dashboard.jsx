@@ -158,6 +158,64 @@ export default function Dashboard() {
         }
       `}</style>
 
+      <style>{`
+  @keyframes orbit1 {
+    0%   { transform: translate(-50%, -50%) rotate(0deg)   translateX(200px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(200px) rotate(-360deg); }
+  }
+
+  @keyframes orbit2 {
+    0%   { transform: translate(-50%, -50%) rotate(0deg)   translateX(180px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(180px) rotate(-360deg); }
+  }
+
+  .floating-dot {
+    position: absolute;
+    border-radius: 50%;
+    background: ${theme.colors.primary};
+    opacity: 0.6;
+    top: 30%;
+    left: 50%;
+  }
+
+  .dot-1 {
+    width: 12px;
+    height: 12px;
+    animation: orbit1 15s infinite linear;
+  }
+
+  .dot-2 {
+    width: 8px;
+    height: 8px;
+    animation: orbit2 15s infinite linear reverse;
+  }
+
+  .orbit-path-outer {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    border: 2px dashed ${theme.colors.primary};
+    border-radius: 50%;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  .orbit-path-inner {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px;
+    height: 360px;
+    border: 2px dashed ${theme.colors.primary};
+    border-radius: 50%;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+`}</style>
       <Navbar showLoginButton={true} />
 
      
@@ -270,8 +328,12 @@ export default function Dashboard() {
       </div>
 
       {/* ── Right: Profile Picture ── */}
-      <div style={{ position: 'relative', justifySelf: 'center', width: 'clamp(250px, 60vw, 360px)', height: 'clamp(300px, 60vw, 430px)', minWidth: '250px' }}>
 
+      <div style={{ position: 'relative', justifySelf: 'center', width: 'clamp(250px, 60vw, 360px)', height: 'clamp(300px, 60vw, 430px)', minWidth: '250px' }}>
+      <div className="orbit-path-outer"></div>
+      <div className="orbit-path-inner"></div>
+      <div className="floating-dot dot-1"></div>
+      <div className="floating-dot dot-2"></div>
         {/* Glow behind blob */}
         <div style={{
           position: 'absolute',
@@ -325,7 +387,7 @@ export default function Dashboard() {
             }}
           />
         </div>
-
+            
         {/* Floating badge — bottom left */}
         <div className="hero-tag" style={{
           position: 'absolute',
@@ -341,6 +403,7 @@ export default function Dashboard() {
           whiteSpace: 'nowrap',
           fontSize: 'clamp(11px, 2.5vw, 13px)',
         }}>
+          
           <span className="availability-dot" />
           <span style={{ fontWeight: 500, color: '#10b981' }}>
             Available
