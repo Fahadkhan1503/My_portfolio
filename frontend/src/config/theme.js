@@ -25,8 +25,8 @@ export const colors = {
     dark: '#0f0f11',
   },
   secondary: {
-    light: '#6c757d',
-    dark: '#495057',
+    light: '#565e64',
+    dark: '#989ea4',
   },
   success: '#10b981',
   warning: '#f59e0b',
@@ -46,7 +46,7 @@ export const lightTheme = {
     surface: colors.surface.light,
     text: colors.text.dark,
     border: colors.border,
-    secondary: colors.secondary.dark,
+    secondary: colors.secondary.light,
   },
 };
 

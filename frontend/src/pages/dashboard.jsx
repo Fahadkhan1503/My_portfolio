@@ -4,7 +4,7 @@ import About from './About';
 import Skills from './Skills';
 import Projects from './Projects';
 import Contact from './Contact';
-
+import { TypeAnimation } from 'react-type-animation';
 export default function Dashboard() {
   const { theme, isDarkMode } = useTheme();
 
@@ -162,23 +162,23 @@ export default function Dashboard() {
 
      
      {/* ── Hero ── */}
-<section id="hero" style={{ ...heroBg, minHeight: '92vh', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 0, paddingTop: '64px' }}>
-  <div className="max-w-7xl mx-auto px-6 py-24 w-full">
+<section id="hero" style={{ ...heroBg, minHeight: '92vh', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 0, paddingTop: '20px' }}>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-24 w-full">
     
-    {/* Two column layout */}
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '60px', width: '100%' }}>
+    {/* Two column layout - responsive */}
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', alignItems: 'center', gap: 'clamp(40px, 8vw, 60px)', width: '100%' }}>
       
       {/* ── Left: Text Content ── */}
-      <div style={{ maxWidth: '580px', flex: '1' }}>
+      <div style={{ maxWidth: '580px' }}>
 
         {/* Greeting */}
-        <p className="hero-tag" style={{ fontSize: '14px', letterSpacing: '0.1em', color: theme.colors.secondary, marginBottom: '8px', fontWeight: 500, textTransform: 'uppercase' }}>
+        <p className="hero-tag" style={{ fontSize: 'clamp(12px, 3vw, 14px)', letterSpacing: '0.1em', color: theme.colors.secondary, marginBottom: '8px', fontWeight: 500, textTransform: 'uppercase' }}>
           Hello, I'm
         </p>
 
         {/* Name */}
         <h1 className="hero-title" style={{
-          fontSize: 'clamp(44px, 7vw, 80px)',
+          fontSize: 'clamp(36px, 8vw, 80px)',
           fontWeight: 800,
           lineHeight: 1.05,
           letterSpacing: '-0.02em',
@@ -189,13 +189,31 @@ export default function Dashboard() {
         </h1>
 
         {/* Role */}
-        <p className="hero-sub" style={{ fontSize: '20px', fontWeight: 600, color: '#7b5caa', marginBottom: '16px' }}>
-          Full-Stack Developer &amp; Game Dev
+        <p className="hero-sub" style={{ fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 500, color: '#7b5caa', marginBottom: '16px' }}>
+          Full-Stack Developer 
         </p>
-
+        {/* typing animation */}
+        <div style={{ fontSize: 'clamp(20px, 4vw, 26px)', fontWeight: 500, color: theme.colors.primary, marginBottom: '16px' }}>
+        <TypeAnimation
+              sequence={[
+                'Building full-stack webapps',
+                2000,
+                'fullstack | RestAPI | clean code',
+                2000,
+                'Crafting AI-powered chatbots',
+                2000,
+                'Always shipping, always learning',
+                2000,
+              ]}
+              wrapper="p"
+              cursor={true}
+              repeat={Infinity}
+              // style={{ fontSize: 'clamp(26px, 4vw, 20px)', fontWeight: 700, color: theme.colors.primary, marginBottom: '16px'  }}
+            />
+            </div>  
         {/* Description */}
         <p className="hero-sub" style={{
-          fontSize: '16px', lineHeight: 1.8,
+          fontSize: 'clamp(14px, 3vw, 16px)', lineHeight: 1.8,
           color: theme.colors.secondary,
           maxWidth: '520px',
           marginBottom: '36px',
@@ -206,12 +224,12 @@ export default function Dashboard() {
 
         {/* Buttons */}
         <div className="hero-btns" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '40px' }}>
-          <a href="/resume.pdf" target="_blank" className="btn-primary">Download CV</a>
-          <a href="#contact" className="btn-outline">Get in touch</a>
+          <a href="/resume.pdf" target="_blank" className="btn-primary" style={{ fontSize: 'clamp(13px, 2.5vw, 15px)' }}>Download CV</a>
+          <a href="#contact" className="btn-outline" style={{ fontSize: 'clamp(13px, 2.5vw, 15px)' }}>Get in touch</a>
         </div>
 
         {/* Social links */}
-        <div className="hero-links" style={{ display: 'flex', gap: '10px', marginBottom: '48px' }}>
+        <div className="hero-links" style={{ display: 'flex', gap: '10px', marginBottom: '48px', flexWrap: 'wrap' }}>
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link" style={{ color: theme.colors.text }}>
             <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
@@ -229,37 +247,37 @@ export default function Dashboard() {
           </a>
         </div>
 
-        {/* Stats */}
-        <div className="hero-links" style={{
-          display: 'flex', gap: '36px',
-          paddingTop: '24px',
+        {/* Stats - responsive grid */}
+        {/* <div className="hero-links" style={{
+          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))', gap: 'clamp(20px, 8vw, 36px)',
+          paddingTop: '24px',paddingBottom: '34px',
           borderTop: `1px solid ${isDarkMode ? 'rgba(123,92,170,0.2)' : 'rgba(123,92,170,0.15)'}`,
         }}>
           <div className="stat-item">
             <div className="stat-num">3.55</div>
-            <div className="stat-lbl" style={{ color: theme.colors.secondary }}>CGPA</div>
+            <div className="stat-lbl" style={{ color: theme.colors.secondary, fontSize: 'clamp(10px, 2vw, 12px)' }}>CGPA</div>
           </div>
           <div className="stat-item">
             <div className="stat-num">10+</div>
-            <div className="stat-lbl" style={{ color: theme.colors.secondary }}>Projects</div>
+            <div className="stat-lbl" style={{ color: theme.colors.secondary, fontSize: 'clamp(10px, 2vw, 12px)' }}>Projects</div>
           </div>
           <div className="stat-item">
             <div className="stat-num">98%</div>
-            <div className="stat-lbl" style={{ color: theme.colors.secondary }}>AR Accuracy</div>
+            <div className="stat-lbl" style={{ color: theme.colors.secondary, fontSize: 'clamp(10px, 2vw, 12px)' }}>AR Accuracy</div>
           </div>
-        </div>
+        </div> */}
 
       </div>
 
       {/* ── Right: Profile Picture ── */}
-      <div style={{ position: 'relative', flexShrink: 0, width: '360px', height: '430px' }}>
+      <div style={{ position: 'relative', justifySelf: 'center', width: 'clamp(250px, 60vw, 360px)', height: 'clamp(300px, 60vw, 430px)', minWidth: '250px' }}>
 
         {/* Glow behind blob */}
         <div style={{
           position: 'absolute',
           top: '50%', left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '320px', height: '320px',
+          width: '90%', height: '90%',
           borderRadius: '50%',
           background: isDarkMode
             ? 'radial-gradient(circle, #7c3aed44 0%, transparent 70%)'
@@ -271,7 +289,7 @@ export default function Dashboard() {
         {/* Back offset shape */}
         <div style={{
           position: 'absolute',
-          top: '28px', left: '28px',
+          top: '-51px', left: '-10px',
           width: '100%', height: '100%',
           borderRadius: '60% 40% 55% 45% / 45% 55% 45% 55%',
           background: isDarkMode
@@ -284,9 +302,9 @@ export default function Dashboard() {
         {/* Main blob with image */}
         <div style={{
           position: 'absolute',
-          top: '0', left: '0',
+          top: '-55px', left: '23px',
           width: '100%', height: '100%',
-          borderRadius: '55% 45% 60% 40% / 50% 45% 55% 50%',
+          borderRadius: '55% 45% 60% 36% / 50% 45% 55% 50%',
           overflow: 'hidden',
           border: `2px solid ${isDarkMode ? '#7c3aed88' : '#9333ea66'}`,
           zIndex: 2,
@@ -294,16 +312,16 @@ export default function Dashboard() {
             ? '0 25px 60px rgba(124,58,237,0.35), 0 0 0 1px rgba(124,58,237,0.1)'
             : '0 25px 60px rgba(124,58,237,0.20), 0 0 0 1px rgba(124,58,237,0.08)',
         }}>
-          {/* ↓ Replace with your actual image path */}
+          {/* image path */}
           <img
             src="/profile_image.png"
             alt="Muhammad Fahad"
             style={{
               width: '100%',
-              height: '100%',
+              height: '80%',
               objectFit: 'cover',
               objectPosition: 'center top',
-              filter: 'brightness(0.9)',             
+              filter: isDarkMode ? 'brightness(0.9)' : 'brightness(1)',             
             }}
           />
         </div>
@@ -311,37 +329,39 @@ export default function Dashboard() {
         {/* Floating badge — bottom left */}
         <div className="hero-tag" style={{
           position: 'absolute',
-          bottom: '-10px', left: '-20px',
+          bottom: 'clamp(55px, -5vw, -10px)', left: 'clamp(-25px, -8vw, -20px)',
           zIndex: 3,
           background: isDarkMode ? 'rgba(18,12,30,0.90)' : 'rgba(255,255,255,0.92)',
           border: `1px solid ${isDarkMode ? '#7c3aed55' : '#9333ea33'}`,
           borderRadius: '14px',
-          padding: '10px 16px',
-          display: 'flex', alignItems: 'center', gap: '8px',
+          padding: 'clamp(8px, 2vw, 10px) clamp(12px, 3vw, 16px)',
+          display: 'flex', alignItems: 'center', gap: 'clamp(6px, 2vw, 8px)',
           boxShadow: '0 8px 32px rgba(124,58,237,0.18)',
           backdropFilter: 'blur(10px)',
+          whiteSpace: 'nowrap',
+          fontSize: 'clamp(11px, 2.5vw, 13px)',
         }}>
           <span className="availability-dot" />
-          <span style={{ fontSize: '13px', fontWeight: 500, color: '#10b981', whiteSpace: 'nowrap' }}>
-            Available for work
+          <span style={{ fontWeight: 500, color: '#10b981' }}>
+            Available
           </span>
         </div>
 
         {/* Floating badge — top right */}
         <div className="hero-tag" style={{
           position: 'absolute',
-          top: '-10px', right: '-20px',
+          top: 'clamp(-15px, -5vw, -10px)', right: 'clamp(-25px, -8vw, -20px)',
           zIndex: 3,
           background: isDarkMode ? 'rgba(18,12,30,0.90)' : 'rgba(255,255,255,0.92)',
           border: `1px solid ${isDarkMode ? '#7c3aed55' : '#9333ea33'}`,
           borderRadius: '14px',
-          padding: '10px 16px',
+          padding: 'clamp(8px, 2vw, 10px) clamp(12px, 3vw, 16px)',
           textAlign: 'center',
           boxShadow: '0 8px 32px rgba(124,58,237,0.18)',
           backdropFilter: 'blur(10px)',
         }}>
-          <div style={{ fontSize: '20px', fontWeight: 800, color: '#7c3aed', lineHeight: 1 }}>10+</div>
-          <div style={{ fontSize: '11px', fontWeight: 500, color: theme.colors.secondary, marginTop: '3px' }}>Projects Done</div>
+          <div style={{ fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 800, color: '#7c3aed', lineHeight: 1 }}>10+</div>
+          <div style={{ fontSize: 'clamp(9px, 2vw, 11px)', fontWeight: 500, color: theme.colors.secondary, marginTop: '3px' }}>Projects</div>
         </div>
 
       </div>
