@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import ThemeToggle from './ThemeToggle';
-
+import { FaBars, FaTimes } from 'react-icons/fa';
 export default function Navbar({ showLoginButton = true, user = null, onLogout = null }) {
   const { theme, isDarkMode } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -186,14 +186,10 @@ useEffect(() => {
             >
               <span className="sr-only">Open main menu</span>
               {!isMobileMenuOpen ? (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              ) : (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              )}
+                <FaBars className="block h-6 w-6" />
+                ) : (
+                  < FaTimes className="block h-6 w-6" />
+                )}
             </button>
           </div>
         </div>
