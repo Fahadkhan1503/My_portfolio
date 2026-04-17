@@ -28,6 +28,10 @@ export const colors = {
     light: '#565e64',
     dark: '#989ea4',
   },
+  navborder:{
+    dark: '#e0e0e0',
+    light: '#333333',
+  },
   success: '#10b981',
   warning: '#f59e0b',
   error: '#ef4444',
@@ -47,6 +51,7 @@ export const lightTheme = {
     text: colors.text.dark,
     border: colors.border,
     secondary: colors.secondary.light,
+    navborder: colors.navborder.light,
   },
 };
 
@@ -61,5 +66,6 @@ export const darkTheme = {
     text: colors.text.light,
     border: colors.border,
     secondary: colors.secondary.dark,
+    navborder: colors.navborder.dark, 
   },
 };

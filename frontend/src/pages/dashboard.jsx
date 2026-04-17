@@ -199,7 +199,7 @@ export default function Dashboard() {
     height: 400px;
     border: 2px dashed ${theme.colors.primary};
     border-radius: 50%;
-    opacity: 0.2;
+    opacity: 0;
     pointer-events: none;
   }
 
@@ -212,7 +212,7 @@ export default function Dashboard() {
     height: 360px;
     border: 2px dashed ${theme.colors.primary};
     border-radius: 50%;
-    opacity: 0.2;
+    opacity: 0;
     pointer-events: none;
   }
 `}</style>
