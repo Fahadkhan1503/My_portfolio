@@ -147,8 +147,9 @@ export default function About() {
                     <div
                       className="mb-3 w-9 h-9 rounded-lg flex items-center justify-center"
                       style={{
-                        background: isDarkMode ? "rgba(123,92,170,0.2)" : "rgba(123,92,170,0.1)",
-                        color: theme.colors.primary,
+                        // background: isDarkMode ? "rgba(123,92,170,0.2)" : "rgba(123,92,170,0.1)",
+                        background: isDarkMode ? theme.colors.primaryLighter : theme.colors.primaryLight,
+                        color: isDarkMode ?  theme.colors.primaryDarker : "#ffffff" ,
                       }}
                     >
                       {item.icon}

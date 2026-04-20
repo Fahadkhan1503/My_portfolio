@@ -59,6 +59,7 @@ export const lightTheme = {
   colors: {
     primary: colors.primary.main,
     primaryLight: colors.primary.light,
+    primaryLighter: colors.primary.lighter,
     primaryDark: colors.primary.dark,
     background: colors.background.light,
     surface: colors.surface.light,
@@ -76,6 +77,8 @@ export const darkTheme = {
     primary: colors.primary.main,
     primaryLight: colors.primary.light,
     primaryDark: colors.primary.dark,
+    primaryDarker: colors.primary.darker,
+    primaryLighter: colors.primary.lighter,
     background: colors.background.dark,
     surface: colors.surface.dark,
     text: colors.text.light,
