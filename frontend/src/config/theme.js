@@ -32,6 +32,20 @@ export const colors = {
     dark: '#e0e0e0',
     light: '#333333',
   },
+   gradients: {
+    // Light mode gradients
+    light: {
+      primary: 'linear-gradient(135deg, #7b5caa 0%, #9b7cc4 100%)',
+      accent: 'linear-gradient(135deg, #5b3c8a 0%, #7b5caa 50%, #a78bfa 100%)',
+      subtle: 'linear-gradient(135deg, #9b7cc4 0%, #bb9cde 100%)',
+    },
+    // Dark mode gradients
+    dark: {
+      primary: 'linear-gradient(135deg, #a78bfa 0%, #c084fc 100%)',
+      accent: 'linear-gradient(135deg, #7b5caa 0%, #a78bfa 50%, #d8b4fe 100%)',
+      subtle: 'linear-gradient(135deg, #bb9cde 0%, #d8b4fe 100%)',
+    }
+  },
   success: '#10b981',
   warning: '#f59e0b',
   error: '#ef4444',
@@ -52,6 +66,7 @@ export const lightTheme = {
     border: colors.border,
     secondary: colors.secondary.light,
     navborder: colors.navborder.light,
+    gradients: colors.gradients.light,
   },
 };
 
@@ -67,5 +82,6 @@ export const darkTheme = {
     border: colors.border,
     secondary: colors.secondary.dark,
     navborder: colors.navborder.dark, 
+    gradients: colors.gradients.dark,
   },
 };

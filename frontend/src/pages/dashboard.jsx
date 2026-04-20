@@ -60,6 +60,10 @@ export default function Dashboard() {
         }
 
         .section-title {
+          background: ${theme.colors.gradients.subtle};
+          // background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           font-size: clamp(28px, 5vw, 48px);
           font-weight: 800;
           line-height: 1.15;
@@ -222,7 +226,7 @@ export default function Dashboard() {
      
      {/* ── Hero ── */}
 <section id="hero" style={{ ...heroBg, minHeight: '92vh', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 0, paddingTop: '20px' }}>
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-24 w-full">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-28 pb-8 sm:pb-12 w-full">
     
     {/* Two column layout - responsive */}
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', alignItems: 'center', gap: 'clamp(40px, 8vw, 60px)', width: '100%' }}>
@@ -277,7 +281,7 @@ export default function Dashboard() {
           maxWidth: '520px',
           marginBottom: '36px',
         }}>
-          CS graduate from Iqra University building full-stack apps, AR/VR experiences, and AI/ML solutions.
+          CS graduate from Iqra University building full-stack apps, AR project experiences, and AI/ML solutions.
 Focused on solving real problems and shipping reliable, maintainable systems.
         </p>
 
