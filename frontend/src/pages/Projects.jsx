@@ -1,67 +1,40 @@
+import { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import ProjectCard from '../components/ProjectCard';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { getAllProjects } from '../services/projectService';
 
 export default function Projects() {
   const { theme, isDarkMode } = useTheme();
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const { ref: headerRef, isVisible: headerVisible } = useIntersectionObserver();
   const { ref: statsRef, isVisible: statsVisible } = useIntersectionObserver();
   const { ref: gridRef, isVisible: gridVisible } = useIntersectionObserver();
   const { ref: ctaRef, isVisible: ctaVisible } = useIntersectionObserver();
 
-  const sectionBg = isDarkMode ? { background: '#0f0c19' } : { background: '#faf8ff' };
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        const data = await getAllProjects();
+        setProjects(Array.isArray(data) ? data : data.data || []);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching projects:', err);
+        setError(err.message);
+        setProjects([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const projects = [
-    {
-      id: 1,
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce platform built with React and Node.js featuring product management, user authentication, and payment integration.',
-      tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      githubUrl: 'https://github.com',
-      deployUrl: 'https://example.com',
-    },
-    {
-      id: 2,
-      title: 'AR Navigation System',
-      description: 'Real-time AR navigation app using AR Foundation and Unity for indoor wayfinding in medical facilities.',
-      tags: ['Unity', 'AR Foundation', 'C#', 'ARKit'],
-      githubUrl: 'https://github.com',
-      deployUrl: 'https://example.com',
-    },
-    {
-      id: 3,
-      title: 'AI Chatbot Platform',
-      description: 'Intelligent chatbot powered by machine learning algorithms with natural language processing capabilities.',
-      tags: ['Python', 'TensorFlow', 'FastAPI', 'React'],
-      githubUrl: 'https://github.com',
-      deployUrl: 'https://example.com',
-    },
-    {
-      id: 4,
-      title: 'Task Management App',
-      description: 'Real-time task management application with collaboration features, live updates, and team analytics.',
-      tags: ['React', 'Firebase', 'Tailwind', 'Redux'],
-      githubUrl: 'https://github.com',
-      deployUrl: 'https://example.com',
-    },
-    {
-      id: 5,
-      title: 'Medical Image Analysis',
-      description: 'ML model for analyzing medical images with 98% accuracy using computer vision techniques.',
-      tags: ['Python', 'OpenCV', 'TensorFlow', 'PyTorch'],
-      githubUrl: 'https://github.com',
-      deployUrl: 'https://example.com',
-    },
-    {
-      id: 6,
-      title: 'VR Gaming Environment',
-      description: 'Immersive VR gaming environment built with Unity featuring physics-based interactions.',
-      tags: ['Unity', 'C#', 'VR', 'Oculus SDK'],
-      githubUrl: 'https://github.com',
-      deployUrl: 'https://example.com',
-    },
-  ];
+    fetchProjects();
+  }, []);
+
+  const sectionBg = isDarkMode ? { background: '#0f0c19' } : { background: '#faf8ff' };
 
   const stats = [
     { label: 'Total Projects', value: '10+', icon: '📁' },
@@ -75,7 +48,7 @@ export default function Projects() {
       {/* ── Section Header ── */}
       <div
         ref={headerRef}
-        className={`max-w-7xl mx-auto px-6 pt-32 pb-20 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        className={`max-w-7xl mx-auto px-6 pt-22 pb-20 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
         <span className="section-label">Featured Work</span>
         <h2 className="section-title mt-3">Projects</h2>
@@ -85,7 +58,7 @@ export default function Projects() {
       </div>
 
       {/* ── Stats Row ── */}
-      <div ref={statsRef} className="max-w-7xl mx-auto px-6 pb-24">
+      {/* <div ref={statsRef} className="max-w-7xl mx-auto px-6 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat, idx) => (
             <div
@@ -113,28 +86,43 @@ export default function Projects() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* ── Projects Grid ── */}
       <div ref={gridRef} className="max-w-7xl mx-auto px-6 pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, idx) => (
-            <div
-              key={project.id}
-              className={`transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ transitionDelay: `${80 * idx}ms` }}
-            >
-              <ProjectCard
-                title={project.title}
-                description={project.description}
-                tags={project.tags}
-                githubUrl={project.githubUrl}
-                deployUrl={project.deployUrl}
-                isAdmin={false}
-              />
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <div className="text-center py-16">
+            <p style={{ color: theme.colors.secondary }}>Loading projects...</p>
+          </div>
+        ) : error ? (
+          <div className="text-center py-16">
+            <p style={{ color: '#ef4444' }}>Error: {error}</p>
+          </div>
+        ) : projects.length === 0 ? (
+          <div className="text-center py-16">
+            <p style={{ color: theme.colors.secondary }}>No projects found</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, idx) => (
+              <div
+                key={project.id}
+                className={`transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${80 * idx}ms` }}
+              >
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  tags={project.tags}
+                  image={project.image}
+                  githubUrl={project.githubUrl}
+                  deployUrl={project.link}
+                  isAdmin={false}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* ── Divider ── */}
