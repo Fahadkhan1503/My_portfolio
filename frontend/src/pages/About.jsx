@@ -26,12 +26,12 @@ export default function About() {
       {/* ── Section Header ── */}
       <div
         ref={headerRef}
-        className={`max-w-7xl mx-auto px-6 pt-10 pb-5 transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+        className={`max-w-7xl mx-auto px-4 md:px-6 pt-8 md:pt-10 pb-3 md:pb-5 transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       >
         <span className="section-label"> 1.About Me</span>
         <h2 className="section-title mt-3 pb-2">My Journey</h2>
         <p
-          className="section-desc mt-4 max-w-2xl font-semibold"
+          className="section-desc mt-4 max-w-2xl font-semibold text-sm md:text-base"
           style={{ color: theme.colors.secondary }}
         >
           From passion to profession , my path through technology and continuous
@@ -40,15 +40,15 @@ export default function About() {
       </div>
 
       {/* ── Story Section ── */}
-      <div ref={storyRef} className="max-w-7xl mx-auto px-6 pb-22">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div ref={storyRef} className="max-w-7xl mx-auto px-4 md:px-6 pb-16 md:pb-22">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start md:items-center">
           {/* left — Text */}
           <div
             className={`transition-all duration-700 delay-200 ${storyVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}
           >
-            <div className="space-y-5">
+            <div className="space-y-3 md:space-y-5">
               <p
-                className="text-lg leading-relaxed"
+                className="text-base md:text-lg leading-relaxed"
                 style={{ color: theme.colors.secondary }}
               >
                 I'm a Computer Science graduate from Iqra University with a CGPA
@@ -57,7 +57,7 @@ export default function About() {
                 real-world problems.
               </p>
               <p
-                className="text-lg leading-relaxed"
+                className="text-base md:text-lg leading-relaxed"
                 style={{ color: theme.colors.secondary }}
               >
                 During my studies, I interned at{" "}
@@ -67,7 +67,7 @@ export default function About() {
                 design.
               </p>
               <p
-                className="text-lg leading-relaxed"
+                className="text-base md:text-lg leading-relaxed"
                 style={{ color: theme.colors.secondary }}
               >
                 I'm currently seeking roles in software development,
@@ -100,7 +100,7 @@ export default function About() {
           <div
             className={`transition-all duration-700 delay-100 ${storyVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}
           >
-            <div className="grid grid-cols-2 gap-4 h-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 h-full">
               {[
                 {
                   value: "3.55",
@@ -129,7 +129,7 @@ export default function About() {
               ].map((item, idx) => (
                 <div
                   key={idx}
-                  className="relative rounded-2xl p-5 flex flex-col justify-between transition-all duration-500 hover:scale-[1.02]"
+                  className="relative rounded-lg md:rounded-2xl p-3 md:p-5 flex flex-col justify-between transition-all duration-500 hover:scale-[1.02]"
                   style={{
                     background: isDarkMode
                       ? "rgba(30, 20, 45, 0.6)"
@@ -145,7 +145,7 @@ export default function About() {
                   <div>
                     
                     <div
-                      className="mb-3 w-9 h-9 rounded-lg flex items-center justify-center"
+                      className="mb-2 md:mb-3 w-8 md:w-9 h-8 md:h-9 rounded-lg flex items-center justify-center"
                       style={{
                         // background: isDarkMode ? "rgba(123,92,170,0.2)" : "rgba(123,92,170,0.1)",
                         background: isDarkMode ? theme.colors.primaryLighter : theme.colors.primaryLight,
@@ -154,16 +154,16 @@ export default function About() {
                     >
                       {item.icon}
                     </div>
-                        <div className="flex items-center gap-2 mb-1">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <div
-                      className="text-3xl font-bold mb-1"
+                      className="text-2xl md:text-3xl font-bold mb-1"
                       style={{ color: theme.colors.primary }}
                     >
                       {item.value}
                       
                     </div>
                     <div
-                      className="text-lg uppercase tracking-wider font-medium "
+                      className="text-xs md:text-lg uppercase tracking-wider font-medium "
                       style={{ color: theme.colors.text }}
                     >
                       {item.label}
@@ -171,7 +171,7 @@ export default function About() {
                     </div>
                   </div>
                   <div
-                    className="text-xs mt-3 opacity-70"
+                    className="text-xs mt-2 md:mt-3 opacity-70"
                     style={{ color: theme.colors.secondary }}
                   >
                     {item.desc}
@@ -185,7 +185,7 @@ export default function About() {
 
       {/* ── Divider ── */}
       <div
-        className="max-w-7xl mx-auto px-6"
+        className="max-w-7xl mx-auto px-4 md:px-6"
         style={{
           height: "1px",
           background: isDarkMode

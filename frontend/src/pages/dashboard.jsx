@@ -68,6 +68,7 @@ export default function Dashboard() {
           font-weight: 800;
           line-height: 1.15;
           letter-spacing: -0.02em;
+          padding-bottom: 0.5rem;
         }
 
         .section-desc {
