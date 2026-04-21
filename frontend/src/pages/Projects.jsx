@@ -3,6 +3,7 @@ import { useTheme } from '../context/ThemeContext';
 import ProjectCard from '../components/ProjectCard';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { getAllProjects } from '../services/projectService';
+import { FaGithub } from 'react-icons/fa';
 
 export default function Projects() {
   const { theme, isDarkMode } = useTheme();
@@ -64,48 +65,18 @@ export default function Projects() {
       {/* ── Section Header ── */}
       <div
         ref={headerRef}
-        className={`max-w-7xl mx-auto px-6 pt-22 pb-20 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        className={`max-w-7xl mx-auto px-6 pt-22 pb-10 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
-        <span className="section-label">Featured Work</span>
+        <span className="section-label">3.Featured Work</span>
         <h2 className="section-title mt-3">Projects</h2>
         <p className="section-desc mt-4 max-w-2xl" style={{ color: theme.colors.secondary }}>
           A selection of things I've built — each representing my commitment to quality and innovation
         </p>
       </div>
 
-      {/* ── Stats Row ── */}
-      {/* <div ref={statsRef} className="max-w-7xl mx-auto px-6 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className={`flex items-center gap-5 p-6 rounded-2xl transition-all duration-700 ${statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-              style={{
-                transitionDelay: `${100 * idx}ms`,
-                background: isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.8)',
-                border: `1.5px solid ${isDarkMode ? 'rgba(123,92,170,0.18)' : 'rgba(123,92,170,0.12)'}`,
-              }}
-            >
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0"
-                style={{
-                  background: isDarkMode ? 'rgba(123,92,170,0.15)' : 'rgba(123,92,170,0.08)',
-                  border: `1px solid ${isDarkMode ? 'rgba(123,92,170,0.25)' : 'rgba(123,92,170,0.15)'}`,
-                }}
-              >
-                {stat.icon}
-              </div>
-              <div>
-                <div className="text-2xl font-bold" style={{ color: '#7b5caa' }}>{stat.value}</div>
-                <p className="text-sm" style={{ color: theme.colors.secondary }}>{stat.label}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
 
       {/* ── Projects Grid ── */}
-      <div ref={gridRef} className="max-w-7xl mx-auto px-6 pb-32">
+      <div ref={gridRef} className="max-w-7xl mx-auto px-6 pb-15">
         {loading ? (
           <div className="text-center py-16">
             <p style={{ color: theme.colors.secondary }}>Loading projects...</p>
@@ -148,35 +119,80 @@ export default function Projects() {
       />
 
       {/* ── CTA ── */}
-      <div ref={ctaRef} className="max-w-7xl mx-auto px-6 py-32">
-        <div
-          className={`rounded-3xl p-12 md:p-16 text-center transition-all duration-700 ${ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-          style={{
-            background: isDarkMode
-              ? 'linear-gradient(135deg, rgba(91,60,138,0.25) 0%, rgba(123,92,170,0.1) 100%)'
-              : 'linear-gradient(135deg, rgba(123,92,170,0.08) 0%, rgba(187,156,222,0.06) 100%)',
-            border: `1.5px solid ${isDarkMode ? 'rgba(123,92,170,0.25)' : 'rgba(123,92,170,0.15)'}`,
-          }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: theme.colors.text }}>
-            Want to see more?
-          </h2>
-          <p className="text-lg mb-8 max-w-xl mx-auto" style={{ color: theme.colors.secondary }}>
-            Check out my GitHub for more projects and open-source contributions.
-          </p>
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary inline-flex items-center gap-2"
-          >
-            Visit GitHub
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-            </svg>
-          </a>
-        </div>
-      </div>
+<div ref={ctaRef} className="max-w-7xl mx-auto px-6 py-20">
+  <div
+    className={`transition-all duration-700 ${ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+    style={{
+      maxWidth: '560px',
+      margin: '0 auto',
+      borderRadius: '20px',
+      padding: '40px 32px',
+      textAlign: 'center',
+      background: isDarkMode
+        ? 'rgba(138,92,210,0.08)'
+        : 'rgba(255,255,255,0.6)',
+      border: isDarkMode
+        ? '1px solid rgba(167,139,250,0.18)'
+        : '1px solid rgba(123,92,170,0.18)',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
+      boxShadow: isDarkMode
+        ? '0 4px 28px rgba(0,0,0,0.3)'
+        : '0 4px 24px rgba(123,92,170,0.1)',
+    }}
+  >
+    <h2
+      className="text-2xl font-semibold mb-2"
+      style={{ color: isDarkMode ? '#ede9fe' : '#1e0f3a' }}
+    >
+      Want to see more?
+    </h2>
+
+    <p
+      className="text-sm mb-6"
+      style={{
+        color: isDarkMode ? 'rgba(210,200,255,0.55)' : 'rgba(70,40,120,0.6)',
+        lineHeight: 1.6,
+      }}
+    >
+      Check out my GitHub for more projects and open-source contributions.
+    </p>
+
+    <a
+      href="https://github.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '8px',
+        padding: '10px 24px',
+        borderRadius: '10px',
+        fontSize: '13px',
+        fontWeight: 500,
+        color: '#fff',
+        background: isDarkMode
+          ? 'linear-gradient(135deg, #7b5caa, #a78bfa)'
+          : 'linear-gradient(135deg, #7b5caa, #9b7cc4)',
+        boxShadow: isDarkMode
+          ? '0 4px 14px rgba(123,92,170,0.4)'
+          : '0 4px 14px rgba(123,92,170,0.3)',
+        textDecoration: 'none',
+        transition: 'all 0.2s',
+      }}
+      onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.88'; e.currentTarget.style.transform = 'scale(1.03)'; }}
+      onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'scale(1)'; }}
+    >
+      <FaGithub size={14} />
+      Visit GitHub
+    </a>
+  </div></div>
+
+
+
+
+
+
     </div>
   );
 }
