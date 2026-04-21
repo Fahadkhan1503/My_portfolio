@@ -60,29 +60,57 @@ export default function ProjectCard({
 
       {/* Tags */}
       {tags.length > 0 && (
-        <div className="flex gap-2 flex-wrap mb-4">
-          {tags.map((tag, index) => (
-            <span 
-              key={index}
-              style={{ 
-                backgroundColor: `${theme.colors.primary}20`, 
-                color: theme.colors.primary,
-                border: `1px solid ${theme.colors.primary}40`,
-                transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-              }} 
-              className="px-3 py-1 rounded-full text-sm font-medium"
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = `${theme.colors.primary}30`;
-                e.currentTarget.style.borderColor = theme.colors.primary;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = `${theme.colors.primary}20`;
-                e.currentTarget.style.borderColor = `${theme.colors.primary}40`;
-              }}
-            >
-              {tag}
-            </span>
-          ))}
+        <div className="mb-6">
+          <div className="flex gap-2 flex-wrap">
+            {tags.slice(0, 4).map((tag, index) => (
+              <span 
+                key={index}
+                style={{ 
+                  backgroundColor: `${theme.colors.primary}20`, 
+                  color: theme.colors.primary,
+                  border: `1px solid ${theme.colors.primary}40`,
+                  transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                }} 
+                className="px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = `${theme.colors.primary}30`;
+                  e.currentTarget.style.borderColor = theme.colors.primary;
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = `${theme.colors.primary}20`;
+                  e.currentTarget.style.borderColor = `${theme.colors.primary}40`;
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+            {tags.length > 4 && (
+              <span 
+                style={{ 
+                  backgroundColor: `${theme.colors.primary}15`, 
+                  color: theme.colors.primary,
+                  border: `1px solid ${theme.colors.primary}35`,
+                  transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                }} 
+                className="px-2.5 py-1 rounded-full text-xs font-medium flex items-center justify-center min-w-fit"
+                title={tags.slice(4).join(', ')}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = `${theme.colors.primary}25`;
+                  e.currentTarget.style.borderColor = theme.colors.primary;
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = `${theme.colors.primary}15`;
+                  e.currentTarget.style.borderColor = `${theme.colors.primary}35`;
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                +{tags.length - 4}
+              </span>
+            )}
+          </div>
         </div>
       )}
 

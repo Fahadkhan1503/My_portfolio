@@ -11,7 +11,23 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const sectionBg = isDarkMode ? { background: '#0f0c19' } : { background: '#faf8ff' };
+  const sectionBg = isDarkMode
+    ? {
+        background: '#0d0a14',
+        backgroundImage: `
+          radial-gradient(ellipse 110% 70% at 0% 110%, rgba(123,92,170,0.32) 0%, transparent 60%),
+          radial-gradient(ellipse 75% 60%  at 100% -5%,  rgba(187,156,222,0.18) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 45%  at 55% 80%,   rgba(91,60,138,0.20)  0%, transparent 65%)
+        `,
+      }
+    : {
+        background: '#f6f3ff',
+        backgroundImage: `
+          radial-gradient(ellipse 80% 65% at 15% 85%, rgba(79,70,229,0.22) 0%, transparent 55%),
+          radial-gradient(ellipse 65% 55% at 85% 15%, rgba(124,58,237,0.20) 0%, transparent 55%),
+          radial-gradient(ellipse 50% 40% at 50% 70%, rgba(37,99,235,0.12) 0%, transparent 60%)
+        `,
+      };
 
   const handleChange = (e) => {
     const { name, value } = e.target;

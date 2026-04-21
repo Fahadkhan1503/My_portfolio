@@ -6,6 +6,7 @@ export const colors = {
     lighter: '#bb9cde',
     dark: '#5b3c8a',
     darker: '#3b1c6a',
+    end: '#312544',
   },
   base: {
     light: '#faf7f5', // Light mode base
@@ -61,6 +62,8 @@ export const lightTheme = {
     primaryLight: colors.primary.light,
     primaryLighter: colors.primary.lighter,
     primaryDark: colors.primary.dark,
+    primaryDarker: colors.primary.darker,
+    primaryend: colors.primary.end,
     background: colors.background.light,
     surface: colors.surface.light,
     text: colors.text.dark,
