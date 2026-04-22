@@ -163,7 +163,7 @@ export default function Projects() {
     </p>
 
     <a
-      href="https://github.com"
+      href="https://github.com/fahadkhan1503"
       target="_blank"
       rel="noopener noreferrer"
       style={{
