@@ -4,6 +4,7 @@ import About from './About';
 import Skills from './Skills';
 import Projects from './Projects';
 import Contact from './Contact';
+import ProjectsPage from './ProjectsPage';
 import { TypeAnimation } from 'react-type-animation';
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 export default function Dashboard() {
@@ -455,8 +456,10 @@ Focused on solving real problems and shipping reliable, maintainable systems.
       <section id="contact">
         <Contact />
       </section>
-
-      {/* ── Footer ── */}
+      
+      
+          
+          {/* ── Footer ── */}
       <footer style={{
         backgroundColor: isDarkMode ? '#0a0810' : '#f0ecff',
         borderTop: `1px solid ${isDarkMode ? 'rgba(123,92,170,0.15)' : 'rgba(123,92,170,0.12)'}`,

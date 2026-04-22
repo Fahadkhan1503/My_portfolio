@@ -4,12 +4,15 @@ import ProjectCard from '../components/ProjectCard';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { getAllProjects } from '../services/projectService';
 import { FaGithub } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import ProjectsPage from './ProjectsPage';
 
 export default function Projects() {
   const { theme, isDarkMode } = useTheme();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const { ref: headerRef, isVisible: headerVisible } = useIntersectionObserver();
   const { ref: statsRef, isVisible: statsVisible } = useIntersectionObserver();
@@ -93,11 +96,12 @@ export default function Projects() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, idx) => (
               <div
-                key={project.id}
+                key={project._id}
                 className={`transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${80 * idx}ms` }}
               >
                 <ProjectCard
+                  id={project._id}
                   title={project.title}
                   description={project.description}
                   tags={project.tags}
@@ -117,7 +121,7 @@ export default function Projects() {
         className="max-w-7xl mx-auto px-6"
         style={{ height: '1px', background: isDarkMode ? 'rgba(123,92,170,0.12)' : 'rgba(123,92,170,0.1)' }}
       />
-
+      
       {/* ── CTA ── */}
 <div ref={ctaRef} className="max-w-7xl mx-auto px-6 py-20">
   <div
@@ -186,7 +190,11 @@ export default function Projects() {
       <FaGithub size={14} />
       Visit GitHub
     </a>
-  </div></div>
+    
+  </div>
+  </div>
+
+  
 
 
 

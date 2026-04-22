@@ -1,7 +1,9 @@
 import { useTheme } from '../context/ThemeContext';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProjectCard({ 
+  id = null,
   title = 'Project Title', 
   description = 'Project description goes here',
   tags = [],
@@ -13,6 +15,7 @@ export default function ProjectCard({
   isAdmin = false,
 }) {
   const { theme, isDarkMode } = useTheme();
+  const navigate = useNavigate();
 
   const cardStyle = {
     borderRadius: '20px',
@@ -69,6 +72,7 @@ export default function ProjectCard({
   return (
     <div
       style={cardStyle}
+      onClick={() => id && navigate(`/projects/${id}`)}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-6px)';
         e.currentTarget.style.borderColor = isDarkMode ? 'rgba(167,139,250,0.45)' : 'rgba(123,92,170,0.45)';
