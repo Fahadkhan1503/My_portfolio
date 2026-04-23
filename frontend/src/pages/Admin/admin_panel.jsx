@@ -7,6 +7,9 @@ import Navbar from '../../components/Navbar';
 import ProjectCard from '../../components/ProjectCard';
 import Button from '../../components/Button';
 import AddProjectModal from '../../components/AddProjectModal';
+import { getSettings, updateSettings } from '../../services/settingsService';
+
+
 
 export default function AdminPanel() {
   const [user, setUser] = useState(null);
@@ -16,7 +19,8 @@ export default function AdminPanel() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { theme } = useTheme();
-
+  const [cvUrl, setCvUrl] = useState('');
+  const [cvSaved, setCvSaved] = useState(false);
   // Fetch projects from API
   const fetchProjects = async () => {
     try {
@@ -40,6 +44,12 @@ export default function AdminPanel() {
     } else {
       setUser(currentUser);
       fetchProjects();
+      getSettings()
+        .then(data => setCvUrl(data.cvUrl || ''))
+        .catch(error => {
+          console.error('Failed to load settings:', error);
+          setCvUrl('');
+        });
     }
   }, [navigate]);
 
@@ -51,6 +61,17 @@ export default function AdminPanel() {
   const handleAddProject = () => {
     setEditingProject(null);
     setIsModalOpen(true);
+  };
+
+  const handleSaveCv = async () => {
+    try {
+      await updateSettings(cvUrl, getToken());
+      setCvSaved(true);
+      setTimeout(() => setCvSaved(false), 2000);
+    } catch (err) {
+      console.error('Failed to save CV URL:', err);
+      alert('Failed to save CV URL. Please try again.');
+    }
   };
 
   const handleCloseModal = () => {
@@ -98,7 +119,7 @@ export default function AdminPanel() {
       <Navbar showLoginButton={false} user={user} onLogout={handleLogout} />
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-20">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
           <div style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.border }} className="border rounded-lg p-6">
@@ -173,6 +194,72 @@ export default function AdminPanel() {
             </div>
           )}
         </div>
+
+        {/* CV URL Section */}
+<div
+  style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.border }}
+  className="border rounded-lg p-8 mt-8"
+>
+  <h2 style={{ color: theme.colors.text }} className="text-2xl font-bold mb-2">
+    CV / Resume Link
+  </h2>
+  <p style={{ color: theme.colors.secondary }} className="text-sm mb-6">
+    Paste your Google Drive, Dropbox, or any public PDF link here.
+  </p>
+
+  <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+    <input
+      type="text"
+      value={cvUrl}
+      onChange={(e) => setCvUrl(e.target.value)}
+      placeholder="https://drive.google.com/file/d/..."
+      style={{
+        flex: '1 1 250px',
+        minWidth: '250px',
+        padding: '12px 16px',
+        borderRadius: '10px',
+        border: `1.5px solid ${theme.colors.border}`,
+        background: theme.colors.background,
+        color: theme.colors.text,
+        fontSize: '14px',
+        outline: 'none',
+      }}
+      onFocus={(e) => e.target.style.borderColor = '#7b5caa'}
+      onBlur={(e) => e.target.style.borderColor = theme.colors.border}
+    />
+    <button
+      onClick={handleSaveCv}
+      style={{
+        padding: '12px 24px',
+        borderRadius: '10px',
+        border: 'none',
+        background: cvSaved
+          ? 'linear-gradient(135deg, #10b981, #059669)'
+          : 'linear-gradient(135deg, #7b5caa, #a78bfa)',
+        color: '#fff',
+        fontWeight: 600,
+        fontSize: '14px',
+        cursor: 'pointer',
+        transition: 'all 0.2s',
+        whiteSpace: 'nowrap',
+        flexShrink: 0,
+      }}
+    >
+      {cvSaved ? '✓ Saved!' : 'Save Link'}
+    </button>
+  </div>
+
+  {cvUrl && (
+    <p style={{ marginTop: '10px', fontSize: '12px', color: theme.colors.secondary }}>
+      Current:{' '}
+      <a href={cvUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#7b5caa' }}>
+        {cvUrl}
+      </a>
+    </p>
+  )}
+</div>
+
+        
       </div>
 
       {/* Add Project Modal */}
@@ -183,5 +270,6 @@ export default function AdminPanel() {
         project={editingProject}
       />
     </div>
+    
   );
 }

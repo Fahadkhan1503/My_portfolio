@@ -7,8 +7,39 @@ import Contact from './Contact';
 import ProjectsPage from './ProjectsPage';
 import { TypeAnimation } from 'react-type-animation';
 import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { useState, useEffect } from 'react';
+import { getSettings } from '../services/settingsService';
+
+
 export default function Dashboard() {
   const { theme, isDarkMode } = useTheme();
+  const [cvUrl, setCvUrl] = useState('');
+
+  const loadSettings = () => {
+    getSettings()
+      .then(data => {
+        if (data && data.cvUrl) {
+          setCvUrl(data.cvUrl);
+        }
+      })
+      .catch(error => {
+        console.error('Failed to load settings:', error);
+      });
+  };
+
+  useEffect(() => {
+    loadSettings();
+
+    // Refetch settings when page becomes visible
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        loadSettings();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
 
   const heroBg = isDarkMode
     ? {
@@ -289,7 +320,14 @@ Focused on solving real problems and shipping reliable, maintainable systems.
 
         {/* Buttons */}
         <div className="hero-btns" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '40px' }}>
-          <a href="/resume.pdf" target="_blank" className="btn-primary" style={{ fontSize: 'clamp(13px, 2.5vw, 15px)' }}>Download CV</a>
+          <a 
+            href={cvUrl || 'https://drive.google.com/file/d/1Bt9EDEBVanHBWu6CaWixznOSwdJqsW53/view?usp=sharing'} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn-primary"
+          >
+            Download CV
+          </a>
           <a href="#contact" className="btn-outline" style={{ fontSize: 'clamp(13px, 2.5vw, 15px)' }}>Get in touch</a>
         </div>
 
@@ -308,27 +346,7 @@ Focused on solving real problems and shipping reliable, maintainable systems.
           </a> */}
         </div>
 
-        {/* Stats - responsive grid */}
-        {/* <div className="hero-links" style={{
-          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))', gap: 'clamp(20px, 8vw, 36px)',
-          paddingTop: '24px',paddingBottom: '34px',
-          borderTop: `1px solid ${isDarkMode ? 'rgba(123,92,170,0.2)' : 'rgba(123,92,170,0.15)'}`,
-        }}>
-          <div className="stat-item">
-            <div className="stat-num">3.55</div>
-            <div className="stat-lbl" style={{ color: theme.colors.secondary, fontSize: 'clamp(10px, 2vw, 12px)' }}>CGPA</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-num">10+</div>
-            <div className="stat-lbl" style={{ color: theme.colors.secondary, fontSize: 'clamp(10px, 2vw, 12px)' }}>Projects</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-num">98%</div>
-            <div className="stat-lbl" style={{ color: theme.colors.secondary, fontSize: 'clamp(10px, 2vw, 12px)' }}>AR Accuracy</div>
-          </div>
-        </div> */}
-
-      </div>
+     </div>
 
       {/* ── Right: Profile Picture ── */}
 
@@ -461,38 +479,44 @@ Focused on solving real problems and shipping reliable, maintainable systems.
           
           {/* ── Footer ── */}
       <footer style={{
-        backgroundColor: isDarkMode ? '#0a0810' : '#f0ecff',
-        borderTop: `1px solid ${isDarkMode ? 'rgba(123,92,170,0.15)' : 'rgba(123,92,170,0.12)'}`,
-      }}>
-        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <span style={{ color: '#7b5caa', fontWeight: 800, fontSize: '20px', letterSpacing: '-0.01em' }}>
-            Fahad.
-          </span>
-          <p style={{ color: theme.colors.secondary, fontSize: '14px' }}>
-            &copy; {new Date().getFullYear()} Muhammad Fahad. All rights reserved.
-          </p>
-          <div style={{ display: 'flex', gap: '20px' }}>
-            {['GitHub', 'LinkedIn', 'Email'].map((link) => (
-              <a
-                key={link}
-                href={link === 'Email' ? 'mailto:fahad@example.com' : `https://${link.toLowerCase()}.com`}
-                target={link !== 'Email' ? '_blank' : undefined}
-                rel="noopener noreferrer"
-                style={{
-                  color: theme.colors.secondary,
-                  fontSize: '13px',
-                  textDecoration: 'none',
-                  transition: 'color 0.2s',
-                }}
-                onMouseEnter={(e) => e.target.style.color = '#7b5caa'}
-                onMouseLeave={(e) => e.target.style.color = theme.colors.secondary}
-              >
-                {link}
-              </a>
-            ))}
-          </div>
-        </div>
-      </footer>
+  backgroundColor: isDarkMode ? '#0a0810' : '#f0ecff',
+  borderTop: `1px solid ${isDarkMode ? 'rgba(123,92,170,0.15)' : 'rgba(123,92,170,0.12)'}`,
+}}>
+  <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+    <span style={{ color: '#7b5caa', fontWeight: 800, fontSize: '20px', letterSpacing: '-0.01em' }}>
+      Fahad.
+    </span>
+    <p style={{ color: theme.colors.secondary, fontSize: '14px' }}>
+      &copy; {new Date().getFullYear()} Muhammad Fahad. All rights reserved.
+    </p>
+    <div style={{ display: 'flex', gap: '20px' }}>
+      {(() => {
+        const socialLinks = {
+          GitHub: 'https://github.com/fahadkhan1503',    
+          LinkedIn: 'https://linkedin.com/in/muhammad-fahad-678861273'       
+        };
+        return Object.keys(socialLinks).map((name) => (
+          <a
+            key={name}
+            href={socialLinks[name]}
+            target={name !== 'Email' ? '_blank' : undefined}
+            rel="noopener noreferrer"
+            style={{
+              color: theme.colors.secondary,
+              fontSize: '13px',
+              textDecoration: 'none',
+              transition: 'color 0.2s',
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#7b5caa'}
+            onMouseLeave={(e) => e.currentTarget.style.color = theme.colors.secondary}
+          >
+            {name}
+          </a>
+        ));
+      })()}
+    </div>
+  </div>
+</footer>
     </div>
   );
 }
