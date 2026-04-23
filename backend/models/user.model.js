@@ -33,10 +33,3 @@ const userSchema = new mongoose.Schema({
 export default mongoose.model('User', userSchema);
 
 
-// {
-//   "name": "Adminisfahad",
-//   "email": "adminisfahad@gmail.com",
-//   "password": "fahadadmin1234*",
-//   "role": "admin"
-// fahadadmin1234*
-// }
