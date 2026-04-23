@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:5000/api/settings';
+const API_URL = 'https://my-portfolio-three-plum-28.vercel.app/api/settings';
+// const API_URL = 'http://localhost:5000/api/settings';
 
 export const getSettings = async () => {
   try {

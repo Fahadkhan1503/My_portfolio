@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:5000/api/auth';
+const API_URL = 'https://my-portfolio-three-plum-28.vercel.app/api/auth';
+// const API_URL = 'http://localhost:5000/api/auth';
 
 export const signup = async (userData) => {
   try {

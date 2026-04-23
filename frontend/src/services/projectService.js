@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:5000/api/projects';
+const API_URL = 'https://my-portfolio-three-plum-28.vercel.app/api/projects';
+// const API_URL = 'http://localhost:5000/api/projects';
 
 export const getToken = () => {
   return localStorage.getItem('token');
