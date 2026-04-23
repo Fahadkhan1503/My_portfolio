@@ -22,7 +22,7 @@ export const colors = {
     dark: '#1f1f22',
   },
   background: {
-    light: '#f5f6f0',
+    light: '#f7f0ff',
     dark: '#0f0f11',
   },
   secondary: {
@@ -33,6 +33,12 @@ export const colors = {
     dark: '#e0e0e0',
     light: '#333333',
   },
+  opposite:
+    {
+      dark: '#1a1a1c',  // Opposite of light mode base
+      light: '#faf7f5',   // Opposite of dark mode base
+    },
+  
    gradients: {
     // Light mode gradients
     light: {
@@ -71,6 +77,7 @@ export const lightTheme = {
     secondary: colors.secondary.light,
     navborder: colors.navborder.light,
     gradients: colors.gradients.light,
+    opposite: colors.opposite.light,
   },
 };
 
@@ -89,5 +96,7 @@ export const darkTheme = {
     secondary: colors.secondary.dark,
     navborder: colors.navborder.dark, 
     gradients: colors.gradients.dark,
+    opposite: colors.opposite.dark,
+
   },
 };

@@ -37,6 +37,10 @@ export default function Button({
       color: theme.colors.primary,
       border: `2px solid ${theme.colors.primary}`,
     },
+    cancel: {
+      backgroundColor: theme.colors.navborder,
+      color: theme.colors.opposite,
+    },
   };
 
   const variantStyle = variants[variant] || variants.primary;

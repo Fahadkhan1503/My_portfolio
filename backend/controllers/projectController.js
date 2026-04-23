@@ -31,11 +31,11 @@ export const getProjectById = async (req, res) => {
 
 export const createProject = async (req, res) => {
   try {
-    const { title, description, image, link, tags, githubUrl } = req.body;
+    const { title, description, image, tags, githubUrl, deployUrl } = req.body;
     const userId = req.user.id; // From auth middleware
 
     // Validation
-    if (!title || !description || !image || !link) {
+    if (!title || !description || !image) {
       return res.status(400).json({ message: 'Please fill all fields' });
     }
 
@@ -43,9 +43,9 @@ export const createProject = async (req, res) => {
       title,
       description,
       image,
-      link,
       tags: tags || [],
       githubUrl: githubUrl || '',
+      deployUrl: deployUrl || '',
       createdBy: userId
     });
 
@@ -64,7 +64,7 @@ export const createProject = async (req, res) => {
 export const updateProject = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, image, link, tags, githubUrl } = req.body;
+    const { title, description, image, tags, githubUrl, deployUrl } = req.body;
     const userId = req.user.id;
 
     const project = await Project.findById(id);
@@ -81,9 +81,9 @@ export const updateProject = async (req, res) => {
     if (title) project.title = title;
     if (description) project.description = description;
     if (image) project.image = image;
-    if (link) project.link = link;
     if (tags) project.tags = tags;
-    if (githubUrl) project.githubUrl = githubUrl;
+    if (githubUrl !== undefined) project.githubUrl = githubUrl;
+    if (deployUrl !== undefined) project.deployUrl = deployUrl;
     project.updatedAt = Date.now();
 
     await project.save();

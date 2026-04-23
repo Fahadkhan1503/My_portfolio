@@ -139,6 +139,12 @@ export default function AdminPanel() {
             </p>
           </div>
           <div style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.border }} className="border rounded-lg p-6">
+            <p style={{ color: theme.colors.secondary }} className="text-sm mb-2">Deployed</p>
+            <p className="text-3xl font-bold" style={{ color: '#06b6d4' }}>
+              {projects.filter(p => p.deployUrl).length}
+            </p>
+          </div>
+          <div style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.border }} className="border rounded-lg p-6">
             <p style={{ color: theme.colors.secondary }} className="text-sm mb-2">User Role</p>
             <p style={{ color: '#a855f7' }} className="text-3xl font-bold capitalize">{user.role}</p>
           </div>
@@ -164,7 +170,7 @@ export default function AdminPanel() {
                   tags={project.tags}
                   image={project.image}
                   githubUrl={project.githubUrl}
-                  deployUrl={project.link}
+                  deployUrl={project.deployUrl}
                   isAdmin={true}
                   onEdit={() => handleEditProject(project._id)}
                   onDelete={() => handleDeleteProject(project._id)}

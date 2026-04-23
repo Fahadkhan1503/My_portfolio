@@ -260,8 +260,8 @@ export default function ProjectsPage() {
                 </a>
               )}
 
-              {project.link && (
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
+              {project.deployUrl && (
+                <a href={project.deployUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
                   <BaseButton isDarkMode={isDarkMode} variant="primary">
                     <FaExternalLinkAlt size={14} /> Live Demo
                   </BaseButton>

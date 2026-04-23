@@ -8,8 +8,8 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, proje
     title: '',
     description: '',
     image: '',
-    link: '',
     githubUrl: '',
+    deployUrl: '',
     tags: '',
   });
   const [error, setError] = useState('');
@@ -23,8 +23,8 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, proje
         title: project.title || '',
         description: project.description || '',
         image: project.image || '',
-        link: project.link || '',
         githubUrl: project.githubUrl || '',
+        deployUrl: project.deployUrl || '',
         tags: (project.tags && Array.isArray(project.tags)) ? project.tags.join(', ') : '',
       });
     } else {
@@ -33,8 +33,8 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, proje
         title: '',
         description: '',
         image: '',
-        link: '',
         githubUrl: '',
+        deployUrl: '',
         tags: '',
       });
     }
@@ -57,7 +57,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, proje
 
     try {
       // Validation
-      if (!formData.title || !formData.description || !formData.image || !formData.link) {
+      if (!formData.title || !formData.description || !formData.image) {
         setError('Please fill all required fields');
         setLoading(false);
         return;
@@ -73,7 +73,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, proje
         title: formData.title,
         description: formData.description,
         image: formData.image,
-        link: formData.link,
+        deployUrl: formData.deployUrl,
         githubUrl: formData.githubUrl,
         tags: tagsArray,
       };
@@ -94,7 +94,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, proje
         title: '',
         description: '',
         image: '',
-        link: '',
+        deployUrl: '',
         githubUrl: '',
         tags: '',
       });
@@ -132,7 +132,12 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, proje
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex justify-between items-center mb-6 sticky top-0" style={{ backgroundColor: theme.colors.surface }}>
+        <div 
+          className="flex justify-between items-center mb-6" 
+          style={{ 
+            backgroundColor: theme.colors.surface,
+          }}
+        >
           <h2 style={{ color: theme.colors.text }} className="text-2xl font-bold">
             {modalTitle}
           </h2>
@@ -210,27 +215,6 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, proje
             />
           </div>
 
-          {/* Deploy Link */}
-          <div>
-            <label style={{ color: theme.colors.text }} className="block text-sm font-medium mb-2">
-              Deploy Link *
-            </label>
-            <input
-              type="url"
-              name="link"
-              value={formData.link}
-              onChange={handleChange}
-              style={{
-                backgroundColor: theme.colors.background,
-                borderColor: theme.colors.border,
-                color: theme.colors.text,
-              }}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none transition"
-              placeholder="https://deployed-site.com"
-              required
-            />
-          </div>
-
           {/* GitHub URL */}
           <div>
             <label style={{ color: theme.colors.text }} className="block text-sm font-medium mb-2">
@@ -249,6 +233,29 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, proje
               className="w-full px-4 py-2 border rounded-lg focus:outline-none transition"
               placeholder="https://github.com/user/repo"
             />
+          </div>
+
+          {/* Deploy URL */}
+          <div>
+            <label style={{ color: theme.colors.text }} className="block text-sm font-medium mb-2">
+              Deploy URL (Live Demo Link)
+            </label>
+            <input
+              type="url"
+              name="deployUrl"
+              value={formData.deployUrl}
+              onChange={handleChange}
+              style={{
+                backgroundColor: theme.colors.background,
+                borderColor: theme.colors.border,
+                color: theme.colors.text,
+              }}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none transition"
+              placeholder="https://live-project.com"
+            />
+            <p style={{ color: theme.colors.secondary }} className="text-xs mt-1">
+              Leave empty if project is not deployed. Demo button will only show when this is filled.
+            </p>
           </div>
 
           {/* Tags */}
@@ -284,7 +291,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, proje
           {/* Buttons */}
           <div className="flex gap-4 pt-6">
             <Button
-              variant="secondary"
+              variant="cancel"
               size="md"
               onClick={onClose}
               className="flex-1"

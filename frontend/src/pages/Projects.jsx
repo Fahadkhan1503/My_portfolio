@@ -107,7 +107,7 @@ export default function Projects() {
                   tags={project.tags}
                   image={project.image}
                   githubUrl={project.githubUrl}
-                  deployUrl={project.link}
+                  deployUrl={project.deployUrl}
                   isAdmin={false}
                 />
               </div>
