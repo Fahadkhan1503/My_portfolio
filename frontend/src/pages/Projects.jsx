@@ -73,7 +73,7 @@ export default function Projects() {
         <span className="section-label">3.Featured Work</span>
         <h2 className="section-title mt-3">Projects</h2>
         <p className="section-desc mt-4 max-w-2xl" style={{ color: theme.colors.secondary }}>
-          A selection of things I've built — each representing my commitment to quality and innovation
+          A selection of things I've built each representing my commitment to quality and innovation
         </p>
       </div>
 
